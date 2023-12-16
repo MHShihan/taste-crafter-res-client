@@ -1,5 +1,11 @@
+import Banner from "./Banner";
+
 const Home = () => {
-  return <div>I am form home</div>;
+  return (
+    <div>
+      <Banner></Banner>
+    </div>
+  );
 };
 
 export default Home;

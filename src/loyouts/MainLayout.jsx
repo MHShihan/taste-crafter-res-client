@@ -6,11 +6,13 @@ import Footer from "../shared/footer/Footer";
 const MainLayout = () => {
   return (
     <>
-      <div className="drawer">
+      <div className="drawer ">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col">
+        <div className="drawer-content flex flex-col ">
           {/* Navbar */}
+
           <Navbar></Navbar>
+
           {/* Page content here */}
           <main>
             <Outlet></Outlet>
@@ -19,6 +21,7 @@ const MainLayout = () => {
             <Footer></Footer>
           </footer>
         </div>
+
         <NavAside></NavAside>
       </div>
     </>

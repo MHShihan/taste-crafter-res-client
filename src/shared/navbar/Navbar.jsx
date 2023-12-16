@@ -2,9 +2,9 @@ import NavItem from "../../components/navRelated/NavItem";
 
 const Navbar = () => {
   return (
-    <div className="bg-base-300">
-      <div className="w-full navbar max-w-7xl mx-auto ">
-        <div className="flex-none lg:hidden">
+    <div className=" fixed top-0 z-10 w-full  bg-black bg-opacity-30">
+      <div className="w-full navbar max-w-7xl mx-auto  ">
+        <div className="flex-none lg:hidden text-white">
           <label
             htmlFor="my-drawer-3"
             aria-label="open sidebar"
@@ -25,7 +25,16 @@ const Navbar = () => {
             </svg>
           </label>
         </div>
-        <div className="flex-1 px-2 mx-2">Navbar Title</div>
+        <div className="flex-1 px-2 mx-2 text-white  ">
+          <div>
+            <h1 className="font-cinzel lg:text-3xl font-extrabold ">
+              Bistro Boss
+            </h1>
+            <h3 className="font-cinzel lg:text-xl font-bold ">
+              R e s t a u r a n t
+            </h3>
+          </div>
+        </div>
         <div className="flex-none hidden lg:block">
           <ul className="menu menu-horizontal">
             {/* Navbar menu content here */}

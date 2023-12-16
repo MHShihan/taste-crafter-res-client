@@ -1,10 +1,10 @@
 const NavItem = () => {
   return (
     <>
-      <li>
+      <li className="text-white ">
         <a>Navbar Item 1</a>
       </li>
-      <li>
+      <li className="text-white">
         <a>Navbar Item 2</a>
       </li>
     </>
