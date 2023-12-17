@@ -3,7 +3,7 @@ import NavItem from "../../components/navRelated/NavItem";
 const Navbar = () => {
   return (
     <div className=" fixed top-0 z-10 w-full  bg-black bg-opacity-30">
-      <div className="w-full navbar max-w-7xl mx-auto  ">
+      <div className="w-full navbar flex justify-between max-w-7xl mx-auto  ">
         <div className="flex-none lg:hidden text-white">
           <label
             htmlFor="my-drawer-3"
@@ -25,7 +25,7 @@ const Navbar = () => {
             </svg>
           </label>
         </div>
-        <div className="flex-1 px-2 mx-2 text-white  ">
+        <div className="  text-white  ">
           <div>
             <h1 className="font-cinzel lg:text-3xl font-extrabold ">
               Bistro Boss
@@ -35,13 +35,13 @@ const Navbar = () => {
             </h3>
           </div>
         </div>
-        <div className="flex-none hidden lg:block">
-          <ul className="menu menu-horizontal">
+        <div className="flex-none hidden lg:block justify-center">
+          <ul className="menu menu-horizontal font-inter ">
             {/* Navbar menu content here */}
             <NavItem></NavItem>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="justify-end">
           <a className="btn">Button</a>
         </div>
       </div>
