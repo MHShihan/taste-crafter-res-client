@@ -5,7 +5,11 @@ export default {
     themes: ["light", "dark", "cupcake"],
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        yellow: "#D99904",
+      },
+    },
     fontFamily: {
       cinzel: ["Cinzel"],
       inter: ["Inter"],
