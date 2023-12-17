@@ -8,6 +8,7 @@ export default {
     extend: {},
     fontFamily: {
       cinzel: ["Cinzel"],
+      inter: ["Inter"],
     },
   },
   plugins: [require("daisyui")],
