@@ -20,16 +20,16 @@ const Featured = () => {
         subheading={"Check it out"}
       ></SectionTitle>
 
-      <div className="flex gap-10 px-32 pb-24 pt-4 justify-center items-center z-50 bg-slate-500 bg-opacity-30 ">
-        <div className="w-1/2 z-10">
+      <div className="flex flex-col lg:flex-row gap-10 px-4 lg:px-32 pb-24 pt-4 justify-center items-center z-50 bg-slate-500 bg-opacity-30 ">
+        <div className="w-full lg:w-1/2 z-10">
           <img src={featuredImg} alt="" />
         </div>
-        <div className=" w-1/2 space-y-2 text-base-100  z-50">
+        <div className="w-full lg:w-1/2 space-y-2 text-base-100  z-50">
           <p className="uppercase text-lg font-inter">March 20, 2023</p>
           <h3 className="uppercase text-xl  font-inter">
             Where can I get some?
           </h3>
-          <p className="text-base-200">{displayText}</p>
+          <p className="text-base-200 text-justify">{displayText}</p>
           <button
             onClick={handleShowText}
             className="btn text-white font-medium hover:text-gray-800 text-xl bg-transparent border-0 border-b-2 "
