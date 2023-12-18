@@ -16,7 +16,7 @@ const NavItem = () => {
           Home
         </NavLink>
       </li>
-      <li className="text-white ">
+      <li>
         <NavLink
           to="/menu"
           style={({ isActive }) => {
@@ -27,6 +27,19 @@ const NavItem = () => {
           }}
         >
           Our Menu
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/order"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "bold" : "bold",
+              color: isActive ? "#EEFF25" : "white",
+            };
+          }}
+        >
+          Order Food
         </NavLink>
       </li>
     </>
