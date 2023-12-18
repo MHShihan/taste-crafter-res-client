@@ -1,15 +1,15 @@
+import soupImg from "../../assets/menu/soup-bg.jpg";
 import OutlineButton from "../../components/buttons/OutlineButton";
 import Cover from "../../shared/cover/Cover";
-import dessertImg from "../../assets/menu/dessert-bg.jpeg";
 import MenuItems from "../../shared/menuItems/MenuItems";
 
-const DessertSection = ({ items }) => {
+const Soups = ({ items }) => {
   return (
     <section>
       <Cover
-        img={dessertImg}
+        img={soupImg}
         height={"700px"}
-        heading={"DESSERTS"}
+        heading={"Soup"}
         description={"Would you like to try a dish?"}
       ></Cover>
 
@@ -24,4 +24,4 @@ const DessertSection = ({ items }) => {
   );
 };
 
-export default DessertSection;
+export default Soups;

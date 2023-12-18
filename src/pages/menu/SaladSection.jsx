@@ -1,9 +1,9 @@
-import PopularMenu from "../home/PopularMenu";
 import Cover from "../../shared/cover/Cover";
 import saladCover from "../../assets/menu/salad-bg.jpg";
 import OutlineButton from "../../components/buttons/OutlineButton";
+import MenuItems from "../../shared/menuItems/MenuItems";
 
-const SaladSection = () => {
+const SaladSection = ({ items }) => {
   return (
     <section>
       <Cover
@@ -12,10 +12,10 @@ const SaladSection = () => {
         heading={"Salad"}
         description={"Would you like to try a dish?"}
       ></Cover>
-      <PopularMenu></PopularMenu>
-      <div className="flex justify-center">
-        <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
-      </div>
+
+      <MenuItems items={items}></MenuItems>
+
+      <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
     </section>
   );
 };

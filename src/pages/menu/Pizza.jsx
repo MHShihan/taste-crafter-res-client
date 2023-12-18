@@ -1,15 +1,15 @@
-import OutlineButton from "../../components/buttons/OutlineButton";
 import Cover from "../../shared/cover/Cover";
-import dessertImg from "../../assets/menu/dessert-bg.jpeg";
+import pizzaImg from "../../assets/menu/pizza-bg.jpg";
+import OutlineButton from "../../components/buttons/OutlineButton";
 import MenuItems from "../../shared/menuItems/MenuItems";
 
-const DessertSection = ({ items }) => {
+const Pizza = ({ items }) => {
   return (
     <section>
       <Cover
-        img={dessertImg}
+        img={pizzaImg}
         height={"700px"}
-        heading={"DESSERTS"}
+        heading={"Pizza"}
         description={"Would you like to try a dish?"}
       ></Cover>
 
@@ -24,4 +24,4 @@ const DessertSection = ({ items }) => {
   );
 };
 
-export default DessertSection;
+export default Pizza;

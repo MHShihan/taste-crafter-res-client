@@ -26,7 +26,7 @@ const NavItem = () => {
             };
           }}
         >
-          Menu
+          Our Menu
         </NavLink>
       </li>
     </>
