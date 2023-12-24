@@ -15,7 +15,6 @@ const Order = () => {
 
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [dessert, salad, pizza, soup, offered, drinks] = useFilteredMenu();
-  console.log(category);
 
   return (
     <div>

@@ -42,6 +42,19 @@ const NavItem = () => {
           Order Food
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/login"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "bold" : "bold",
+              color: isActive ? "#EEFF25" : "white",
+            };
+          }}
+        >
+          Login
+        </NavLink>
+      </li>
     </>
   );
 };

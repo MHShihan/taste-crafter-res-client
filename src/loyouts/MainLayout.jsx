@@ -1,9 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavAside from "../components/navRelated/NavAside";
 import Navbar from "../shared/navbar/Navbar";
 import Footer from "../shared/footer/Footer";
 
 const MainLayout = () => {
+  const location = useLocation();
+
+  const noHeaderFooter = location.pathname.includes("/login");
+
   return (
     <>
       <div className="drawer ">
@@ -11,15 +15,17 @@ const MainLayout = () => {
         <div className="drawer-content flex flex-col ">
           {/* Navbar */}
 
-          <Navbar></Navbar>
+          {noHeaderFooter || <Navbar></Navbar>}
 
           {/* Page content here */}
           <main>
             <Outlet></Outlet>
           </main>
-          <footer>
-            <Footer></Footer>
-          </footer>
+          {noHeaderFooter || (
+            <footer>
+              <Footer></Footer>
+            </footer>
+          )}
         </div>
 
         <NavAside></NavAside>

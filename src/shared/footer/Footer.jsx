@@ -1,6 +1,5 @@
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  console.log(currentYear);
 
   return (
     <footer className="bg-neutral  ">
