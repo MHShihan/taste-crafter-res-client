@@ -2,6 +2,7 @@ import OutlineButton from "../../components/buttons/OutlineButton";
 import Cover from "../../shared/cover/Cover";
 import dessertImg from "../../assets/menu/dessert-bg.jpeg";
 import MenuItems from "../../shared/menuItems/MenuItems";
+import { Link } from "react-router-dom";
 
 const DessertSection = ({ items }) => {
   return (
@@ -18,7 +19,9 @@ const DessertSection = ({ items }) => {
       </div>
 
       <div className="flex justify-center">
-        <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
+        <Link to="/order/dessert">
+          <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
+        </Link>
       </div>
     </section>
   );

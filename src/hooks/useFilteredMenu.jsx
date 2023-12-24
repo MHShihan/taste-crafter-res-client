@@ -9,8 +9,9 @@ const useFilteredMenu = () => {
   const soup = allMenu.filter((item) => item.category === "soup");
   const offered = allMenu.filter((item) => item.category === "offered");
   const drinks = allMenu.filter((item) => item.category === "drinks");
+  console.log("Offered", offered);
 
-  return [dessert, salad, pizza, soup, drinks, offered];
+  return [dessert, salad, pizza, soup, offered, drinks];
 };
 
 export default useFilteredMenu;

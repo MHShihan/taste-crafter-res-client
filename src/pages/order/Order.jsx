@@ -5,13 +5,23 @@ import Cover from "../../shared/cover/Cover";
 import { useState } from "react";
 import useFilteredMenu from "../../hooks/useFilteredMenu";
 import OrderTab from "./OrderTab";
+import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Order = () => {
-  const [tabIndex, setTabIndex] = useState(0);
-  const [dessert, salad, pizza, soup, drinks] = useFilteredMenu();
+  const categories = ["salad", "pizza", "soup", "dessert", "drinks", "offered"];
+  const { category } = useParams();
+  const initialIndex = categories.indexOf(category);
+
+  const [tabIndex, setTabIndex] = useState(initialIndex);
+  const [dessert, salad, pizza, soup, offered, drinks] = useFilteredMenu();
+  console.log(category);
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Order Food</title>
+      </Helmet>
       <Cover
         img={orderImg}
         height={"700px"}
@@ -26,6 +36,7 @@ const Order = () => {
             <Tab>Soup</Tab>
             <Tab>Dessert</Tab>
             <Tab>Drinks</Tab>
+            <Tab>Offered</Tab>
           </TabList>
           <TabPanel>
             <OrderTab items={salad}></OrderTab>
@@ -41,6 +52,9 @@ const Order = () => {
           </TabPanel>
           <TabPanel>
             <OrderTab items={drinks}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={offered}></OrderTab>
           </TabPanel>
         </Tabs>
       </main>

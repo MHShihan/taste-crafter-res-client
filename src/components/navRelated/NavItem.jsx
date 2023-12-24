@@ -31,7 +31,7 @@ const NavItem = () => {
       </li>
       <li>
         <NavLink
-          to="/order"
+          to="/order/salad"
           style={({ isActive }) => {
             return {
               fontWeight: isActive ? "bold" : "bold",

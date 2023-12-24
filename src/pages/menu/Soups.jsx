@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import soupImg from "../../assets/menu/soup-bg.jpg";
 import OutlineButton from "../../components/buttons/OutlineButton";
 import Cover from "../../shared/cover/Cover";
@@ -18,7 +19,9 @@ const Soups = ({ items }) => {
       </div>
 
       <div className="flex justify-center">
-        <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
+        <Link to="/order/soup">
+          <OutlineButton btnTitle={"ORDER YOUR favourite FOOD"}></OutlineButton>
+        </Link>
       </div>
     </section>
   );

@@ -10,6 +10,7 @@ import useFilteredMenu from "../../hooks/useFilteredMenu";
 
 const Menu = () => {
   const [dessert, salad, pizza, soup, offered] = useFilteredMenu();
+
   return (
     <div>
       <Helmet>
