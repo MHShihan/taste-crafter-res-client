@@ -4,7 +4,6 @@ import loginImg from "../../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 
@@ -23,7 +22,7 @@ const Login = () => {
     const password = form.password.value;
     console.log({ email, password });
     // form.reset();
-    // setDisabled(true);
+    setDisabled(true);
   };
 
   const handleValidateCaptcha = () => {
