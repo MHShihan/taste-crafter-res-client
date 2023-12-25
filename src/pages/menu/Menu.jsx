@@ -12,7 +12,7 @@ const Menu = () => {
   const [dessert, salad, pizza, soup, offered] = useFilteredMenu();
 
   return (
-    <div>
+    <>
       <Helmet>
         <title>Bistro Boss | Menu</title>
       </Helmet>
@@ -35,7 +35,7 @@ const Menu = () => {
 
         <Soups items={soup}></Soups>
       </menu>
-    </div>
+    </>
   );
 };
 
