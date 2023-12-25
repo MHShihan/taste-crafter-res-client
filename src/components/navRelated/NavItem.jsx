@@ -55,6 +55,19 @@ const NavItem = () => {
           Login
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/signUp"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "bold" : "bold",
+              color: isActive ? "#EEFF25" : "white",
+            };
+          }}
+        >
+          SignUp
+        </NavLink>
+      </li>
     </>
   );
 };

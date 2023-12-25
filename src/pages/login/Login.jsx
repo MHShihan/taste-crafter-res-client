@@ -6,8 +6,12 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { signIn } = useAuth();
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -104,6 +108,12 @@ const Login = () => {
                   value="Login"
                 />
               </div>
+              <p className="text-[#D1A054] text-center ">
+                New Here?
+                <span className=" font-medium">
+                  <Link to="/signUp"> Create a New Account</Link>
+                </span>
+              </p>
             </form>
           </div>
         </div>
