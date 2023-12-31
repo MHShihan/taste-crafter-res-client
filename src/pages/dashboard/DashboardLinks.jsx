@@ -9,8 +9,11 @@ import { NavLink } from "react-router-dom";
 import { GiWallet } from "react-icons/gi";
 import { IoCalendar } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
+import useCart from "../../hooks/usecart";
 
 const DashboardLinks = () => {
+  const [cart] = useCart();
+
   return (
     <>
       {/* User Home */}
@@ -88,7 +91,7 @@ const DashboardLinks = () => {
           <span className="text-lg">
             <FaShoppingCart />
           </span>
-          My Cart
+          My Cart ({cart.length})
         </NavLink>
       </li>
 

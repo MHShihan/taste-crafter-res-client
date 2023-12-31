@@ -1,10 +1,41 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/usecart";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Cart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
   let count = 1;
+
+  const axiosInstance = useAxiosSecure();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/user/carts/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="w-3/4 mx-auto bg-white py-6">
@@ -13,7 +44,7 @@ const Cart = () => {
           Total Order: {cart.length}
         </h3>
         <h3 className="text-3xl font-bold uppercase">
-          Total Price: {totalPrice}
+          Total Price: {totalPrice.toFixed(2)}
         </h3>
         <button className="btn  text-white bg-[#D1A054] hover:bg-[#e0ac5d] text-center ">
           PAY
@@ -46,7 +77,10 @@ const Cart = () => {
                 <td>{item.name}</td>
                 <td className="font-medium">$ {item.price}</td>
                 <th>
-                  <button className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-600 text-lg text-white">
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-00 text-lg text-white"
+                  >
                     <FaRegTrashAlt />
                   </button>
                 </th>

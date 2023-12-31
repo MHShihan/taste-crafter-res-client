@@ -5,8 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
+
   const {
     register,
     handleSubmit,
@@ -26,12 +29,21 @@ const SignUp = () => {
 
         updateUser(data.name, data.photo)
           .then(() => {
-            console.log("User profile info updated");
-            Swal.fire({
-              title: "Good job!",
-              text: "Sign Up successful!",
-              icon: "success",
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                // console.log("User added into data base");
+                Swal.fire({
+                  title: "Good job!",
+                  text: "Sign Up successful!",
+                  icon: "success",
+                });
+              }
             });
+
             reset();
             navigate("/login");
           })
