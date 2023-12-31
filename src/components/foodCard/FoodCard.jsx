@@ -3,8 +3,10 @@ import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useCart from "../../hooks/usecart";
 
 const FoodCard = ({ item }) => {
+  const [cart, refetch] = useCart();
   const axiosInstance = useAxiosSecure();
   const { name, recipe, image, price, _id } = item;
 
@@ -12,9 +14,8 @@ const FoodCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleAddToCart = (food) => {
+  const handleAddToCart = () => {
     if (user && user.email) {
-      console.log(food, user.email);
       const cartItem = {
         menuId: _id,
         email: user.email,
@@ -25,8 +26,11 @@ const FoodCard = ({ item }) => {
       };
       axiosInstance.post("/user/carts", cartItem).then((res) => {
         console.log(res.data);
-        if (res?.data?.insertedId) {
-          toast.success(`${name} added to your cart`);
+        if (res.data.insertedId) {
+          refetch();
+          toast.success(`${name} added to your cart`, {
+            position: "top-right",
+          });
         }
       });
     } else {
@@ -62,7 +66,7 @@ const FoodCard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions justify-center mt-2">
           <button
-            onClick={() => handleAddToCart(item)}
+            onClick={handleAddToCart}
             className="btn btn-outline btn-wide border-0 border-b-yellow hover:border-b-yellow border-b-2 text-yellow hover:text-yellow hover:bg-[#111827]"
           >
             Order Now

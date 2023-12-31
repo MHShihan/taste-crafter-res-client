@@ -2,10 +2,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { TiShoppingCart } from "react-icons/ti";
+import useCart from "../../hooks/usecart";
 
 const NavItem = () => {
   const { logOut, user } = useAuth();
   const navigate = useNavigate();
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -79,7 +81,7 @@ const NavItem = () => {
       {/* Cart */}
       <li>
         <NavLink
-          to=""
+          to={"/dashboard/cart"}
           style={({ isActive }) => {
             return {
               fontWeight: isActive ? "bold" : "medium",
@@ -91,7 +93,7 @@ const NavItem = () => {
             <span className="text-xl mr-1">
               <TiShoppingCart />
             </span>
-            <div className="badge badge-secondary ">0+</div>
+            <div className="badge badge-secondary ">{cart.length}+</div>
           </button>
         </NavLink>
       </li>
