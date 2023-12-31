@@ -1,8 +1,14 @@
-import { FaCalendar, FaHome, FaShoppingCart } from "react-icons/fa";
+import {
+  FaCalendar,
+  FaHome,
+  FaShoppingBag,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { BiSolidCommentEdit } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { GiWallet } from "react-icons/gi";
 import { IoCalendar } from "react-icons/io5";
+import { TiThMenu } from "react-icons/ti";
 
 const DashboardLinks = () => {
   return (
@@ -123,6 +129,68 @@ const DashboardLinks = () => {
             <IoCalendar />
           </span>
           My Bookings
+        </NavLink>
+      </li>
+
+      {/* divide  */}
+      <div className="divider"></div>
+      {/* Home */}
+      <li>
+        <NavLink
+          to="/"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "500" : "500",
+              color: isActive ? "#FFF" : "#151515",
+              background: "transparent",
+              fontFamily: "cinzel",
+            };
+          }}
+        >
+          <span className="text-lg">
+            <FaHome />
+          </span>
+          Home
+        </NavLink>
+      </li>
+
+      {/* Our Menu */}
+      <li>
+        <NavLink
+          to="/menu"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "500" : "500",
+              color: isActive ? "#FFF" : "#151515",
+              background: "transparent",
+              fontFamily: "cinzel",
+            };
+          }}
+        >
+          <span className="text-lg">
+            <TiThMenu />
+          </span>
+          Our Menu
+        </NavLink>
+      </li>
+
+      {/* Order */}
+      <li>
+        <NavLink
+          to="/order/salad"
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "500" : "500",
+              color: isActive ? "#FFF" : "#151515",
+              background: "transparent",
+              fontFamily: "cinzel",
+            };
+          }}
+        >
+          <span className="text-lg">
+            <FaShoppingBag />
+          </span>
+          Order Food
         </NavLink>
       </li>
     </>
