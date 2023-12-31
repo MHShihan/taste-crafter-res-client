@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { TiShoppingCart } from "react-icons/ti";
 
 const NavItem = () => {
   const { logOut, user } = useAuth();
@@ -33,6 +34,7 @@ const NavItem = () => {
 
   return (
     <>
+      {/* Home */}
       <li>
         <NavLink
           to="/"
@@ -46,6 +48,7 @@ const NavItem = () => {
           Home
         </NavLink>
       </li>
+      {/* Our Menu */}
       <li>
         <NavLink
           to="/menu"
@@ -59,6 +62,7 @@ const NavItem = () => {
           Our Menu
         </NavLink>
       </li>
+      {/* Order Food */}
       <li>
         <NavLink
           to="/order/salad"
@@ -72,6 +76,26 @@ const NavItem = () => {
           Order Food
         </NavLink>
       </li>
+      {/* Cart */}
+      <li>
+        <NavLink
+          to=""
+          style={({ isActive }) => {
+            return {
+              fontWeight: isActive ? "bold" : "medium",
+              color: isActive ? "#EEFF25" : "white",
+            };
+          }}
+        >
+          <button className="flex">
+            <span className="text-xl mr-1">
+              <TiShoppingCart />
+            </span>
+            <div className="badge badge-secondary ">0+</div>
+          </button>
+        </NavLink>
+      </li>
+      {/* Logout */}
       <li>
         {user ? (
           <>
@@ -86,7 +110,7 @@ const NavItem = () => {
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? "bold" : "bold",
-                  color: isActive ? "#EEFF25" : "white",
+                  color: isActive ? "white" : "white",
                 };
               }}
             >
@@ -94,19 +118,6 @@ const NavItem = () => {
             </NavLink>
           </>
         )}
-      </li>
-      <li>
-        <NavLink
-          to="/signUp"
-          style={({ isActive }) => {
-            return {
-              fontWeight: isActive ? "bold" : "medium",
-              color: isActive ? "#EEFF25" : "white",
-            };
-          }}
-        >
-          SignUp
-        </NavLink>
       </li>
     </>
   );
