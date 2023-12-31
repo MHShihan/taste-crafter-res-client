@@ -1,16 +1,34 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const FoodCard = ({ item }) => {
-  const { name, recipe, image, price } = item;
+  const axiosInstance = useAxiosSecure();
+  const { name, recipe, image, price, _id } = item;
 
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAddToCart = (food) => {
     if (user && user.email) {
       console.log(food, user.email);
+      const cartItem = {
+        menuId: _id,
+        email: user.email,
+        name,
+        image,
+        price,
+        recipe,
+      };
+      axiosInstance.post("/user/carts", cartItem).then((res) => {
+        console.log(res.data);
+        if (res?.data?.insertedId) {
+          toast.success(`${name} added to your cart`);
+        }
+      });
     } else {
       Swal.fire({
         title: "You Are Not Logged In?",
@@ -23,7 +41,7 @@ const FoodCard = ({ item }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           //  Sent to the login page
-          navigate("/login");
+          navigate("/login", { state: { from: location } });
         }
       });
     }
