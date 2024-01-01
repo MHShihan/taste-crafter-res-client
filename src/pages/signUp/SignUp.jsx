@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/socialLogin/SocialLogin";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -168,6 +169,7 @@ const SignUp = () => {
                   </span>
                 </p>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>

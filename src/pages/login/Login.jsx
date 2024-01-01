@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/socialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -134,6 +135,7 @@ const Login = () => {
                   </span>
                 </p>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>
