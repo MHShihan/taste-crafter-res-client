@@ -66,7 +66,7 @@ const Cart = () => {
           <tbody>
             {cart.map((item) => (
               <tr key={item._id}>
-                <th>{count++}</th>
+                <td>{count++}</td>
                 <td>
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
@@ -76,14 +76,14 @@ const Cart = () => {
                 </td>
                 <td>{item.name}</td>
                 <td className="font-medium">$ {item.price}</td>
-                <th>
+                <td>
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-00 text-lg text-white"
+                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-00 text-lg text-white hover:scale-105"
                   >
                     <FaRegTrashAlt />
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>
