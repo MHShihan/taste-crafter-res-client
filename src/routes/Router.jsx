@@ -10,6 +10,7 @@ import Secret from "../shared/secret/Secret";
 import PrivateRoute from "./PrivateRoute";
 import Cart from "../pages/dashboard/Cart";
 import Dashboard from "../loyouts/Dashboard";
+import Users from "../pages/dashboard/Users";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+
+      //Admin Dashboard
+      {
+        path: "users",
+        element: <Users></Users>,
       },
     ],
   },

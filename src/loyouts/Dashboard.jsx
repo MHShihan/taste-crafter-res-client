@@ -9,7 +9,7 @@ const Dashboard = () => {
           <h2 className="font-extrabold text-2xl  ">Bistro Boss</h2>
           <h3 className="tracking-[.16em] font-[700]  text-xl">Restaurant</h3>
         </div>
-        <ul className="menu  font-inter">
+        <ul className="menu  font-inter mt-6">
           <DashboardLinks></DashboardLinks>
         </ul>
       </div>

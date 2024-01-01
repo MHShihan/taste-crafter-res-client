@@ -7,7 +7,7 @@ import useCart from "../../hooks/usecart";
 
 const FoodCard = ({ item }) => {
   const [cart, refetch] = useCart();
-  const axiosInstance = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const { name, recipe, image, price, _id } = item;
 
   const { user } = useAuth();
@@ -24,7 +24,7 @@ const FoodCard = ({ item }) => {
         price,
         recipe,
       };
-      axiosInstance.post("/user/carts", cartItem).then((res) => {
+      axiosSecure.post("/user/carts", cartItem).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
           refetch();

@@ -3,16 +3,16 @@ import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
 
 const useCart = () => {
-  const axiosInstance = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
   const getCartsData = async () => {
-    const res = await axiosInstance.get(`/user/carts?email=${user?.email}`);
+    const res = await axiosSecure.get(`/user/carts?email=${user?.email}`);
     return res.data;
   };
 
   //   queryFn: async () => {
-  //     const res = await axiosInstance.get(`/user/carts?email=${user.email}`);
+  //     const res = await axiosSecure.get(`/user/carts?email=${user.email}`);
   //     return res.data;
   //   },
 

@@ -9,7 +9,7 @@ const Cart = () => {
 
   let count = 1;
 
-  const axiosInstance = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -22,7 +22,7 @@ const Cart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`/user/carts/${id}`).then((res) => {
+        axiosSecure.delete(`/user/carts/${id}`).then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             Swal.fire({
