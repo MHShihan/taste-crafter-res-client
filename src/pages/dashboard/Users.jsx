@@ -1,8 +1,63 @@
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaUsers } from "react-icons/fa";
 import useUsers from "../../hooks/useUsers";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Users = () => {
   const [users, refetch] = useUsers();
+  const axiosSecure = useAxiosSecure();
+
+  const handleMakeAdmin = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to make the user as Admin",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Admin!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/admin/makeAdmin/${user._id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Success",
+              text: `${user.name} is an Admin Now.`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/admin/deleteUsers/${user._id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="w-3/4 mx-auto bg-white py-6">
@@ -31,11 +86,22 @@ const Users = () => {
 
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td className="font-medium"></td>
+                <td className="font-medium">
+                  {user?.role === "admin" ? (
+                    "Admin"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="py-2 px-2 rounded-md text-2xl text-white bg-[#D1A054] hover:bg-[#e9b15e]  hover:scale-105"
+                    >
+                      <FaUsers />
+                    </button>
+                  )}
+                </td>
                 <td>
                   <button
-                    // onClick={() => handleDelete(item._id)}
-                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-00 text-lg text-white hover:scale-105"
+                    onClick={() => handleDeleteUser(user)}
+                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-600 text-lg text-white hover:scale-105"
                   >
                     <FaRegTrashAlt />
                   </button>

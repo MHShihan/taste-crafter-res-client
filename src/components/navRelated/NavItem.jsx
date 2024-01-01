@@ -102,7 +102,7 @@ const NavItem = () => {
         {user ? (
           <>
             <button onClick={handleLogOut} className="font-medium text-white ">
-              LogOut
+              Log Out
             </button>
           </>
         ) : (

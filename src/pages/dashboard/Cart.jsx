@@ -79,7 +79,7 @@ const Cart = () => {
                 <td>
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-00 text-lg text-white hover:scale-105"
+                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-600 text-lg text-white hover:scale-105"
                   >
                     <FaRegTrashAlt />
                   </button>
