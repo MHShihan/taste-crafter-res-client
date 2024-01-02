@@ -11,6 +11,8 @@ import PrivateRoute from "./PrivateRoute";
 import Cart from "../pages/dashboard/Cart";
 import Dashboard from "../loyouts/Dashboard";
 import Users from "../pages/dashboard/Users";
+import AddItems from "../pages/dashboard/AddItems";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -57,15 +59,28 @@ export const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      // General user routes
       {
         path: "cart",
         element: <Cart></Cart>,
       },
 
-      //Admin Dashboard
+      //Admin routes
       {
         path: "users",
-        element: <Users></Users>,
+        element: (
+          <AdminRoute>
+            <Users></Users>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addItems",
+        element: (
+          <AdminRoute>
+            <AddItems></AddItems>
+          </AdminRoute>
+        ),
       },
     ],
   },

@@ -13,9 +13,9 @@ import { NavLink } from "react-router-dom";
 import { GiWallet } from "react-icons/gi";
 import { IoCalendar } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
-import useCart from "../../hooks/usecart";
 import { MdEmail } from "react-icons/md";
 import useAdmin from "../../hooks/useAdmin";
+import useCart from "../../hooks/useCart";
 
 const DashboardLinks = () => {
   const [cart] = useCart();
@@ -24,6 +24,7 @@ const DashboardLinks = () => {
   return (
     <>
       {isAdmin ? (
+        // Admin Nav Links
         <>
           {/* Admin Home */}
           <li>
@@ -122,6 +123,7 @@ const DashboardLinks = () => {
           </li>
         </>
       ) : (
+        // General user nav links
         <>
           {/* User Home */}
           <li>

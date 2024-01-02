@@ -2,9 +2,11 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/usecart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import loadingAnimation from "../../assets/animation/loadingAnimation.json";
+import Lottie from "lottie-react";
 
 const Cart = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch, isLoading] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   let count = 1;
@@ -41,6 +43,7 @@ const Cart = () => {
     <div className="w-3/4 mx-auto bg-white py-6">
       <div className="flex gap-10 justify-evenly mb-4">
         <h3 className="text-3xl font-bold uppercase">
+          {isLoading && <Lottie animationData={loadingAnimation}></Lottie>}
           Total Order: {cart.length}
         </h3>
         <h3 className="text-3xl font-bold uppercase">

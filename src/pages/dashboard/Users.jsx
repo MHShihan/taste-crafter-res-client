@@ -2,9 +2,11 @@ import { FaRegTrashAlt, FaUsers } from "react-icons/fa";
 import useUsers from "../../hooks/useUsers";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/animation/loadingAnimation.json";
 
 const Users = () => {
-  const [users, refetch] = useUsers();
+  const [users, refetch, isLoading] = useUsers();
   const axiosSecure = useAxiosSecure();
 
   const handleMakeAdmin = (user) => {
@@ -63,6 +65,7 @@ const Users = () => {
     <div className="w-3/4 mx-auto bg-white py-6">
       <div className=" mb-4">
         <h3 className="text-3xl font-bold uppercase">
+          {isLoading && <Lottie animationData={loadingAnimation}></Lottie>}
           Total Users: {users.length}
         </h3>
       </div>

@@ -16,12 +16,16 @@ const useCart = () => {
   //     return res.data;
   //   },
 
-  const { refetch, data: cart = [] } = useQuery({
+  const {
+    refetch,
+    isLoading,
+    data: cart = [],
+  } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: getCartsData,
   });
 
-  return [cart, refetch];
+  return [cart, refetch, isLoading];
 };
 
 export default useCart;
