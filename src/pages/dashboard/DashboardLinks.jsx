@@ -15,10 +15,11 @@ import { IoCalendar } from "react-icons/io5";
 import { TiThMenu } from "react-icons/ti";
 import useCart from "../../hooks/usecart";
 import { MdEmail } from "react-icons/md";
+import useAdmin from "../../hooks/useAdmin";
 
 const DashboardLinks = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <>
