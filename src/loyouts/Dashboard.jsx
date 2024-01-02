@@ -13,7 +13,7 @@ const Dashboard = () => {
           <DashboardLinks></DashboardLinks>
         </ul>
       </div>
-      <div className="col-span-9 lg:col-span-10 py-10 bg-[#F6F6F6]">
+      <div className="col-span-9 lg:col-span-10 ">
         <Outlet></Outlet>
       </div>
     </div>

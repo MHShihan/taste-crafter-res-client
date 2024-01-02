@@ -62,57 +62,59 @@ const Users = () => {
   };
 
   return (
-    <div className="w-3/4 mx-auto bg-white py-6">
-      <div className=" mb-4">
-        <h3 className="text-3xl font-bold uppercase">
-          {isLoading && <Lottie animationData={loadingAnimation}></Lottie>}
-          Total Users: {users.length}
-        </h3>
-      </div>
+    <div className="py-10 bg-[#F6F6F6]">
+      <div className="w-3/4 mx-auto bg-white p-6 ">
+        <div className=" mb-4">
+          <h3 className="text-3xl font-bold uppercase">
+            Total Users: {users.length}
+          </h3>
+        </div>
 
-      <div className="overflow-x-auto rounded-t-2xl">
-        <table className="table">
-          {/* head */}
-          <thead className="bg-[#D1A054] text-white text-base ">
-            <tr>
-              <th>#</th>
-              <th> Name </th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td className="font-medium">
-                  {user?.role === "admin" ? (
-                    "Admin"
-                  ) : (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="py-2 px-2 rounded-md text-2xl text-white bg-[#D1A054] hover:bg-[#e9b15e]  hover:scale-105"
-                    >
-                      <FaUsers />
-                    </button>
-                  )}
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteUser(user)}
-                    className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-600 text-lg text-white hover:scale-105"
-                  >
-                    <FaRegTrashAlt />
-                  </button>
-                </td>
+        <div className="overflow-x-auto rounded-t-2xl">
+          <table className="table">
+            {/* head */}
+            <thead className="bg-[#D1A054] text-white text-base ">
+              <tr>
+                <th>#</th>
+                <th> Name </th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td className="font-medium">
+                    {user?.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="py-2 px-2 rounded-md text-2xl text-white bg-[#D1A054] hover:bg-[#e9b15e]  hover:scale-105"
+                      >
+                        <FaUsers />
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleDeleteUser(user)}
+                      className="py-2 px-2 rounded-md bg-red-700 hover:bg-red-600 text-lg text-white hover:scale-105"
+                    >
+                      <FaRegTrashAlt />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {isLoading && <Lottie animationData={loadingAnimation}></Lottie>}
       </div>
     </div>
   );
