@@ -3,6 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useUsers = () => {
   const axiosSecure = useAxiosSecure();
+
   const getAllUsers = async () => {
     const res = await axiosSecure("/users");
     return res.data;

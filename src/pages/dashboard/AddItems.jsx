@@ -1,9 +1,48 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../components/sectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const AddItems = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const axiosPubic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+    const imageFile = { image: data?.image[0] };
+    // Upload image to imagebb
+    const res = await axiosPubic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res.data);
+    if (res.data.success) {
+      const menuItem = {
+        name: data.name,
+        recipe: data.recipe,
+        image: res.data.data.display_url,
+        category: data.category,
+        price: parseFloat(data.price),
+      };
+      const menuRes = await axiosSecure.post("/admin/menu", menuItem);
+      if (menuRes.data.insertedId) {
+        reset();
+        toast.success(`${data.name} is added to the menu.`, {
+          duration: 4000,
+          position: "top-center",
+        });
+      }
+      console.log("Menu Response", menuRes.data);
+    }
+  };
+
   return (
     <div className="my-10 ">
       <SectionTitle

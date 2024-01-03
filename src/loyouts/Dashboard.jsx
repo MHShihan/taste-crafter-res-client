@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
 import DashboardLinks from "../pages/dashboard/DashboardLinks";
+import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto  grid grid-cols-12  ">
+      <Toaster />
       <div className=" col-span-3 lg:col-span-2 bg-[#D1A054] min-h-screen pt-10 ">
         <div className="ml-6  text-[#151515] font-cinzel">
           <h2 className="font-extrabold text-2xl  ">Bistro Boss</h2>
