@@ -13,6 +13,7 @@ import Dashboard from "../loyouts/Dashboard";
 import Users from "../pages/dashboard/Users";
 import AddItems from "../pages/dashboard/AddItems";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../pages/dashboard/ManageItems";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,22 @@ export const router = createBrowserRouter([
 
       //Admin routes
       {
+        path: "addItems",
+        element: (
+          <AdminRoute>
+            <AddItems></AddItems>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageItems",
+        element: (
+          <AdminRoute>
+            <ManageItems></ManageItems>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "users",
         element: (
           <AdminRoute>
@@ -74,16 +91,6 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "addItems",
-        element: <AddItems></AddItems>,
-      },
-      //   element: (
-      //     <AdminRoute>
-      //       <AddItems></AddItems>
-      //     </AdminRoute>
-      //   ),
-      // },
     ],
   },
 ]);

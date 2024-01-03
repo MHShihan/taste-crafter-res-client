@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { TiShoppingCart } from "react-icons/ti";
-import useCart from "../../hooks/usecart";
+import useCart from "../../hooks/useCart";
 
 const NavItem = () => {
   const { logOut, user } = useAuth();
