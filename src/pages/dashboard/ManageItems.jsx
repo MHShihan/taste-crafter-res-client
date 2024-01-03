@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import loadingAnimation from "../../assets/animation/loadingAnimation.json";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [allMenu, refetch, isLoading] = useMenu();
@@ -20,19 +21,18 @@ const ManageItems = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/admin/deleteItem/${item._id}`).then((res) => {
-          console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: `${item.name} has been deleted.`,
-              icon: "success",
-            });
-          }
-        });
+        const res = await axiosSecure.delete(`/admin/deleteItem/${item._id}`);
+        console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: `${item.name} has been deleted.`,
+            icon: "success",
+          });
+        }
       }
     });
   };
@@ -77,12 +77,11 @@ const ManageItems = () => {
                   <td>{item.name}</td>
                   <td className="font-medium">$ {item.price}</td>
                   <td>
-                    <button
-                      onClick={() => handleUpdate(item._id)}
-                      className="py-2 px-2 rounded-md bg-[#D1A054] hover:bg-[#d4a45b] text-lg text-white hover:scale-105"
-                    >
-                      <FaRegPenToSquare />
-                    </button>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button className="py-2 px-2 rounded-md bg-[#D1A054] hover:bg-[#d4a45b] text-lg text-white hover:scale-105">
+                        <FaRegPenToSquare />
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button
