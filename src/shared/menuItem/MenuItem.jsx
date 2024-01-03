@@ -8,7 +8,6 @@ const MenuItem = (props = {}) => {
         src={image}
         style={{ borderRadius: "0 200px 200px 200px" }}
         className="w-[100px] "
-        alt=""
       />
       <div>
         <h4 className="text-[#151515] uppercase text-xl ">{name} -------</h4>

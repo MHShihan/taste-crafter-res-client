@@ -10,13 +10,14 @@ const useMenu = () => {
   };
 
   const {
-    data: allMenu,
+    data: allMenu = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["allMenu"],
+    queryKey: ["menu"],
     queryFn: getAllMenu,
   });
+  // console.log(allMenu);
 
   return [allMenu, refetch, isLoading];
 };

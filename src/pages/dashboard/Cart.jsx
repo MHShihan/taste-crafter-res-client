@@ -1,9 +1,9 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import useCart from "../../hooks/usecart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import loadingAnimation from "../../assets/animation/loadingAnimation.json";
 import Lottie from "lottie-react";
+import useCart from "../../hooks/useCart";
 
 const Cart = () => {
   const [cart, refetch, isLoading] = useCart();

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../assets/animation/loadingAnimation.json";
+import SectionTitle from "../../components/sectionTitle/SectionTitle";
 
 const Users = () => {
   const [users, refetch, isLoading] = useUsers();
@@ -63,7 +64,11 @@ const Users = () => {
 
   return (
     <div className="py-10 bg-[#F6F6F6]">
-      <div className="w-3/4 mx-auto bg-white p-6 ">
+      <SectionTitle
+        heading="Manage All  users"
+        subheading="How many?"
+      ></SectionTitle>
+      <div className="w-3/4 mx-auto bg-white p-6">
         <div className=" mb-4">
           <h3 className="text-3xl font-bold uppercase">
             Total Users: {users.length}
