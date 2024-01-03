@@ -37,10 +37,11 @@ const AddItems = () => {
                 </span>
               </div>
               <select
+                defaultValue="default"
                 {...register("category", { required: true })}
-                className="select w-full "
+                className="select w-full text-sm font-inter text-[#868585] "
               >
-                <option disabled selected>
+                <option disabled value="default">
                   Select a Category
                 </option>
                 <option value="salad">Salad</option>
@@ -75,7 +76,7 @@ const AddItems = () => {
             </div>
             <textarea
               {...register("recipe")}
-              className="textarea  h-32 mb-4"
+              className="textarea text-base h-32 mb-4"
               placeholder="Recipe details"
               required
             ></textarea>
