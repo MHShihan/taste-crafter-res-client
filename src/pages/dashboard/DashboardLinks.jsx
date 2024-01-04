@@ -128,7 +128,7 @@ const DashboardLinks = () => {
           {/* User Home */}
           <li>
             <NavLink
-              to="/dashboard/userHome"
+              to="/"
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? "500" : "500",

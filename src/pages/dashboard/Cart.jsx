@@ -7,12 +7,11 @@ import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const axiosSecure = useAxiosSecure();
   const [cart, refetch, isLoading] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   let count = 1;
-
-  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
     Swal.fire({
