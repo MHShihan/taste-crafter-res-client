@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import loadingAnimation from "../../assets/animation/loadingAnimation.json";
 import Lottie from "lottie-react";
 import useCart from "../../hooks/useCart";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch, isLoading] = useCart();
@@ -49,9 +50,20 @@ const Cart = () => {
         <h3 className="text-3xl font-bold uppercase">
           Total Price: {totalPrice.toFixed(2)}
         </h3>
-        <button className="btn  text-white bg-[#D1A054] hover:bg-[#e0ac5d] text-center ">
-          PAY
-        </button>
+        {cart.length ? (
+          <Link to="/dashboard/payment">
+            <button className="btn  text-white bg-[#D1A054] hover:bg-[#e0ac5d] text-center ">
+              PAY
+            </button>
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="btn  text-white bg-[#D1A054] hover:bg-[#e0ac5d] text-center "
+          >
+            PAY
+          </button>
+        )}
       </div>
 
       <div className="overflow-x-auto rounded-t-2xl">
