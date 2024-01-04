@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
@@ -14,17 +15,19 @@ const CheckoutForm = () => {
 
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
-    axiosSecure
-      .post("/user/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/user/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (event) => {
@@ -72,6 +75,32 @@ const CheckoutForm = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("Transaction ID:", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        // Save the payment on the data base
+        const payment = {
+          email: user.email,
+          name: user?.displayName,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(), //utc date convert. use moment js to convert
+          cartIds: cart.map((item) => item._id),
+          menuIds: cart.map((item) => item.menuId),
+          status: "pending",
+        };
+
+        const res = await axiosSecure.post("/user/payment", payment);
+        if (res.data?.paymentResult?.insertedId) {
+          console.log("Payment info saved", res.data);
+          Swal.fire({
+            title: "Good job!",
+            text: "Payment Successful!",
+            icon: "success",
+            showConfirmButton: false,
+            position: "top-end",
+            timer: 1500,
+          });
+        }
+        refetch();
       }
     }
   };
@@ -97,7 +126,7 @@ const CheckoutForm = () => {
       <button
         className="btn text-white bg-[#D1A054] hover:bg-[#e0ac5d] text-center my-4 "
         type="submit"
-        disabled={!stripe || !clientSecret}
+        disabled={!stripe || !clientSecret || transactionId}
       >
         Pay
       </button>
