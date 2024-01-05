@@ -32,10 +32,12 @@ const AuthProvider = ({ children }) => {
   };
 
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const updateUser = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -57,13 +59,14 @@ const AuthProvider = ({ children }) => {
         axiosPublic.post("/jwt/access-token", userInfo).then((res) => {
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
+            // Set loading false after jwt token has been set in the locals  storage
+            setLoading(false);
           }
         });
       } else {
         localStorage.removeItem("access-token");
+        setLoading(false);
       }
-
-      setLoading(false);
     });
     return () => {
       return unsubscribe();

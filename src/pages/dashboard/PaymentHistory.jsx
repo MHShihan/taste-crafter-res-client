@@ -8,11 +8,7 @@ import SectionTitle from "../../components/sectionTitle/SectionTitle";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const {
-    data: payments = [],
-    refetch,
-    isLoading,
-  } = useQuery({
+  const { data: payments = [], isLoading } = useQuery({
     queryKey: ["paymentHistory", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/user/payment/${user.email}`);

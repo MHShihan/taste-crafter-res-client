@@ -3,11 +3,13 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { TiShoppingCart } from "react-icons/ti";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavItem = () => {
   const { logOut, user } = useAuth();
   const navigate = useNavigate();
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -97,6 +99,38 @@ const NavItem = () => {
           </button>
         </NavLink>
       </li>
+      {/* Dashboard Home */}
+      {user && isAdmin && (
+        <li>
+          <NavLink
+            to={"/dashboard/adminHome"}
+            style={({ isActive }) => {
+              return {
+                fontWeight: isActive ? "bold" : "medium",
+                color: isActive ? "#EEFF25" : "white",
+              };
+            }}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink
+            to={"/dashboard/userHome"}
+            style={({ isActive }) => {
+              return {
+                fontWeight: isActive ? "bold" : "medium",
+                color: isActive ? "#EEFF25" : "white",
+              };
+            }}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
       {/* Logout */}
       <li>
         {user ? (

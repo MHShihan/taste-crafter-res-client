@@ -45,6 +45,25 @@ const DashboardLinks = () => {
               Admin Home
             </NavLink>
           </li>
+          {/* Admin Cart */}
+          <li>
+            <NavLink
+              to="/dashboard/cart"
+              style={({ isActive }) => {
+                return {
+                  fontWeight: isActive ? "500" : "500",
+                  color: isActive ? "#FFF" : "#151515",
+                  background: "transparent",
+                  fontFamily: "cinzel",
+                };
+              }}
+            >
+              <span className="text-lg">
+                <FaShoppingCart />
+              </span>
+              Admin Cart ({cart.length})
+            </NavLink>
+          </li>
           {/* Add Items */}
           <li>
             <NavLink
@@ -128,7 +147,7 @@ const DashboardLinks = () => {
           {/* User Home */}
           <li>
             <NavLink
-              to="/"
+              to="/dashboard/userHome"
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? "500" : "500",

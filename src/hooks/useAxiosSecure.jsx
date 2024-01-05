@@ -28,7 +28,7 @@ const useAxiosSecure = () => {
     },
     async (error) => {
       const status = error?.response?.status;
-      // console.log("Inside response interceptors:", status);
+      // console.log("Inside response interceptors:", error.response);
       if (status === 401 || status === 403) {
         await logOut();
         navigate("/login");
