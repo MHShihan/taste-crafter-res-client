@@ -6,7 +6,20 @@ import { FaTruck, FaUsers } from "react-icons/fa";
 import { GiChefToque } from "react-icons/gi";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../assets/animation/loadingAnimation.json";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  PieChart,
+  Pie,
+  Legend,
+} from "recharts";
+
+const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "pink", "#16745B"];
 
 const AdminHome = () => {
   const { user } = useAuth();
@@ -28,8 +41,7 @@ const AdminHome = () => {
     },
   });
 
-  const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
-
+  // Custom  Shape Bar Chart
   const getPath = (x, y, width, height) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${
       x + width / 2
@@ -47,9 +59,41 @@ const AdminHome = () => {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
 
+  // Pie Chart with customized label
+  const pieChartData = chartData.map((data) => {
+    return { name: data.category, value: data.quantity };
+  });
+  console.log(pieChartData);
+
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
   return (
-    <div className="bg-[#F6F6F6] min-h-screen">
-      <div className="mx-10">
+    <div className="min-h-screen bg-[#F6F6F6] pb-20 ">
+      <div className="mx-10 ">
         <h2 className="text-3xl pt-10 pb-6">
           <span>Hi, Welcome </span>
           <span className="font-medium">
@@ -120,6 +164,7 @@ const AdminHome = () => {
         </div>
       </div>
       <div className="flex bg-white mt-10 mx-10 ">
+        {/* Bar chart */}
         <div className="w-1/2">
           <BarChart
             width={500}
@@ -147,7 +192,29 @@ const AdminHome = () => {
             </Bar>
           </BarChart>
         </div>
-        <div className="w-1/2"></div>
+        {/* Pie Chart */}
+        <div className="w-1/2">
+          <PieChart width={400} height={400}>
+            <Pie
+              data={pieChartData}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {pieChartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Legend></Legend>
+          </PieChart>
+        </div>
       </div>
     </div>
   );
