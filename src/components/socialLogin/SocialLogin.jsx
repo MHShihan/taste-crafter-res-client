@@ -12,24 +12,23 @@ const SocialLogin = () => {
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        console.log(result.user);
-        const userInfo = {
-          name: result.user?.displayName,
-          email: result.user?.email,
-        };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
-          Swal.fire({
-            title: "Good job!",
-            text: " Login successful!",
-            icon: "success",
-          });
-          navigate(from, { replace: true });
+    googleSignIn().then(async (result) => {
+      console.log(result.user);
+      const userInfo = {
+        name: result.user?.displayName,
+        email: result.user?.email,
+      };
+      const res = await axiosPublic.post("/users", userInfo);
+      if (res.data) {
+        console.log(res.data);
+        Swal.fire({
+          title: "Good job!",
+          text: " Login successful!",
+          icon: "success",
         });
-      })
-      .catch((error) => console.log(error.message));
+        navigate(from, { replace: true });
+      }
+    });
   };
   return (
     <div className="pb-8 px-8">

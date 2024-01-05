@@ -50,19 +50,18 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       console.log("current user", currentUser);
 
       if (currentUser) {
         const userInfo = { email: currentUser.email };
-        axiosPublic.post("/jwt/access-token", userInfo).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
-            // Set loading false after jwt token has been set in the locals  storage
-            setLoading(false);
-          }
-        });
+        const res = await axiosPublic.post("/jwt/access-token", userInfo);
+        if (res.data.token) {
+          localStorage.setItem("access-token", res.data.token);
+          // Set loading false after jwt token has been set in the locals  storage
+          setLoading(false);
+        }
       } else {
         localStorage.removeItem("access-token");
         setLoading(false);
