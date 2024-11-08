@@ -10,6 +10,7 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   const handleGoogleSignIn = () => {
     googleSignIn().then(async (result) => {
@@ -35,7 +36,7 @@ const SocialLogin = () => {
       <div className="divider">OR</div>
       <button
         onClick={handleGoogleSignIn}
-        className="btn btn-block text-xl bg-gray-300 hover:scale-105"
+        className="btn btn-block  text-white text-xl bg-[#D1A054B3] hover:scale-105"
       >
         <FaGoogle />
         Google

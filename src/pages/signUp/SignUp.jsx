@@ -7,6 +7,8 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -20,6 +22,8 @@ const SignUp = () => {
 
   const { createUser, updateUser } = useAuth();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -55,10 +59,14 @@ const SignUp = () => {
       });
   };
 
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Sign Up</title>
+        <title>Taste Crafter | Sign Up</title>
       </Helmet>
       <div
         className="max-w-7xl mx-auto p-1 "
@@ -119,12 +127,12 @@ const SignUp = () => {
                     required
                   />
                 </div>
-                <div className="form-control">
+                <div className="relative">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     {...register("password", {
                       required: true,
                       minLength: 8,
@@ -134,9 +142,24 @@ const SignUp = () => {
                     })}
                     name="password"
                     placeholder="password"
-                    className="input input-bordered"
+                    className="input input-bordered w-full"
                     required
                   />
+                  {showPassword ? (
+                    <span
+                      onClick={handleShowPassword}
+                      className="absolute right-2 top-12 cursor-pointer"
+                    >
+                      <FaEyeSlash />
+                    </span>
+                  ) : (
+                    <span
+                      onClick={handleShowPassword}
+                      className="absolute right-2 top-12 cursor-pointer"
+                    >
+                      <FaEye />
+                    </span>
+                  )}
                   {errors.password?.type === "minLength" && (
                     <span className="text-red-500">
                       Password must be at least 8 characters

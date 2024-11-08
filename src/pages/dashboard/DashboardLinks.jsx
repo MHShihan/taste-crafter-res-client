@@ -242,7 +242,7 @@ const DashboardLinks = () => {
           {/* My Bookings */}
           <li>
             <NavLink
-              to="/dashboard/addReview"
+              to="/dashboard/myBookings"
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? "500" : "500",

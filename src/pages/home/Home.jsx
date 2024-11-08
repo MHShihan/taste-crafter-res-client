@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Home</title>
+        <title>Taste Crafter | Home</title>
       </Helmet>
       <Banner></Banner>
       <main className="max-w-7xl mx-auto px-2">

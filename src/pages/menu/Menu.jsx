@@ -14,7 +14,7 @@ const Menu = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Menu</title>
+        <title>Taste Crafter | Menu</title>
       </Helmet>
 
       <Cover

@@ -19,6 +19,11 @@ import Payment from "../pages/dashboard/Payment";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
 import AdminHome from "../pages/dashboard/AdminHome";
 import UserHome from "../pages/dashboard/UserHome";
+import Donate from "../pages/donate/Donate";
+import Reservation from "../pages/dashboard/Reservation";
+import AddReview from "../pages/dashboard/AddReview";
+import MyBookings from "../pages/dashboard/MyBookings";
+import ManageBookings from "./ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "signUp",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "donate",
+        element: <Donate></Donate>,
       },
       {
         path: "secret",
@@ -81,6 +90,18 @@ export const router = createBrowserRouter([
       {
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
+      },
+      {
+        path: "addReview",
+        element: <AddReview></AddReview>,
+      },
+      {
+        path: "myBookings",
+        element: <MyBookings></MyBookings>,
       },
       //Admin only routes
       {
@@ -124,6 +145,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Users></Users>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageBookings",
+        element: (
+          <AdminRoute>
+            <ManageBookings></ManageBookings>
           </AdminRoute>
         ),
       },

@@ -11,11 +11,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [disabled, setDisabled] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || "/";
   // console.log("state inside the login page", location.state);
@@ -23,8 +27,6 @@ const Login = () => {
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
-  const [disabled, setDisabled] = useState(true);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -44,7 +46,14 @@ const Login = () => {
         });
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        Swal.fire({
+          title: "Something Went Wrong",
+          text: "Username or Password is wrong!",
+          icon: "error",
+        });
+        console.log(error);
+      });
   };
 
   const handleValidateCaptcha = (e) => {
@@ -57,10 +66,15 @@ const Login = () => {
       setDisabled(true);
     }
   };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>Taste Crafter | Login</title>
       </Helmet>
       <div
         className="max-w-7xl mx-auto p-1 "
@@ -76,7 +90,7 @@ const Login = () => {
             </div>
             <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
               <form onSubmit={handleLogin} className="card-body">
-                <div className="form-control">
+                <div className="form-control relative">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
@@ -88,18 +102,36 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div className="form-control">
+
+                <div className="relative">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
+                  <div></div>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="password"
-                    className="input input-bordered"
+                    className="input input-bordered w-full"
                     required
                   />
+                  {showPassword ? (
+                    <span
+                      onClick={handleShowPassword}
+                      className="absolute right-2 top-12 cursor-pointer"
+                    >
+                      <FaEyeSlash />
+                    </span>
+                  ) : (
+                    <span
+                      onClick={handleShowPassword}
+                      className="absolute right-2 top-12 cursor-pointer"
+                    >
+                      <FaEye />
+                    </span>
+                  )}
                 </div>
+
                 <div className="form-control">
                   <label className="label">
                     <LoadCanvasTemplate />
@@ -122,7 +154,7 @@ const Login = () => {
                 <div className="form-control mt-6">
                   {/* TODO: disabled the  re captcha */}
                   <input
-                    disabled={false}
+                    disabled={disabled}
                     type="submit"
                     className="btn bg-[#D1A054B3] text-white font-medium font-inter text-xl hover:bg-[#d19f54cc] hover:scale-105"
                     value="Login"

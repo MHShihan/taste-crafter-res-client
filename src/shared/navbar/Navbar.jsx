@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import NavItem from "../../components/navRelated/NavItem";
 
 const Navbar = () => {
@@ -28,9 +29,9 @@ const Navbar = () => {
         <div className="  text-white  ">
           <div>
             <h1 className="font-cinzel lg:text-3xl font-extrabold ">
-              Bistro Boss
+              TASTE CRAFTER
             </h1>
-            <h3 className="font-cinzel lg:text-xl font-bold ">
+            <h3 className="font-cinzel lg:text-3xl font-bold ">
               R e s t a u r a n t
             </h3>
           </div>
@@ -42,7 +43,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="justify-end">
-          <a className="btn">Button</a>
+          <NavLink to="/donate">
+            <a className="btn pb-2 bg-transparent text-white text-2xl hover:bg-gray-900 hover:border-transparent">
+              Donate
+            </a>
+          </NavLink>
         </div>
       </div>
     </div>
